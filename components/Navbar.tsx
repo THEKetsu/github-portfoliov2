@@ -8,9 +8,9 @@ import { Moon, Sun, Menu } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
 const navItems = [
-  { name: 'Accueil', href: '/' },
-  { name: 'Projets', href: '/work' },
-  { name: 'À propos', href: '/about' },
+  { name: 'Home', href: '/' },
+  { name: 'Projects', href: '/work' },
+  { name: 'About', href: '/about' },
   { name: 'Tech', href: '/tech' },
   { name: 'Contact', href: '/contact' },
 ]

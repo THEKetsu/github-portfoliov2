@@ -26,7 +26,7 @@ export default function RootLayout({
             </main>
             <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
               <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-sm text-gray-500 dark:text-gray-400">
-                © 2024 Mon Portfolio. Tous droits réservés.
+                © 2024 GitHub Pages Portfolio. Tous droits réservés.
               </div>
             </footer>
           </div>

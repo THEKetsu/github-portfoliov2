@@ -1,27 +1,53 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
 const technologies = [
-  'React', 'Node.js', 'TypeScript', 'Next.js', 'Python', 'GraphQL'
+  'React', 'TypeScript', 'Next.js', 'Python',
+  'Rust', 'Gitlab', 'Docker', 'Kubernetes', 
+  'Datadog', 'Grafana', 'Bash', 'Ansible', 'Web(CSS/HTML)', 'Proxmox',
+  'Windows', 'PKCS11', 'UI(egui)'
 ]
 
 const projects = [
-  { id: 1, name: 'E-commerce Platform', techs: ['React', 'Node.js', 'GraphQL'] },
+  { id: 1, name: 'PKI Dashboard', techs: ['Rust', 'Web(CSS/HTML)', 'Docker'] },
   { id: 2, name: 'Portfolio Website', techs: ['Next.js', 'TypeScript'] },
-  { id: 3, name: 'Data Analysis Tool', techs: ['Python', 'TypeScript'] },
-  { id: 4, name: 'Mobile App', techs: ['React', 'GraphQL'] },
+  { id: 3, name: 'BIFROST', techs: ['Rust', 'Kubernetes', 'Docker', 'Grafana'] },
+  { id: 4, name: 'RCT Project', techs: ['React', 'Github'] },
+  { id: 5, name: 'Data Centric Security', techs: ['Rust', 'UI(egui)', 'Windows','PKCS11'] },
 ]
+
+const colorMap = {
+  'React': 'bg-blue-500',
+  'TypeScript': 'bg-blue-700',
+  'Next.js': 'bg-black',
+  'Python': 'bg-yellow-500',
+  'Rust': 'bg-orange-600',
+  'Gitlab': 'bg-orange-500',
+  'Docker': 'bg-blue-600',
+  'Kubernetes': 'bg-blue-400',
+  'Datadog': 'bg-purple-600',
+  'Grafana': 'bg-orange-400',
+  'Bash': 'bg-gray-700',
+  'Ansible': 'bg-red-600',
+  'Web(CSS/HTML)': 'bg-pink-500',
+  'Proxmox': 'bg-green-600',
+  'Windows': 'bg-blue-900',
+  'PKCS11': 'bg-gray-900',
+  'UI(egui)': 'bg-gray-800'
+}
 
 export default function Tech() {
   const [selectedTech, setSelectedTech] = useState<string | null>(null)
 
-  const filteredProjects = selectedTech
-    ? projects.filter(project => project.techs.includes(selectedTech))
-    : projects
+  const filteredProjects = useMemo(() => 
+    selectedTech
+      ? projects.filter(project => project.techs.includes(selectedTech))
+      : projects
+  , [selectedTech])
 
   return (
     <motion.div
@@ -37,6 +63,7 @@ export default function Tech() {
             key={tech}
             variant={selectedTech === tech ? "default" : "outline"}
             onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
+            className={`${selectedTech === tech ? colorMap[tech] : ''} text-white`}
           >
             {tech}
           </Button>
@@ -60,8 +87,18 @@ export default function Tech() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Technologies used: {project.techs.join(', ')}
+                  Technologies used:
                 </CardDescription>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {project.techs.map((tech) => (
+                    <span
+                      key={tech}
+                      className={`${colorMap[tech]} text-white text-xs font-semibold px-2 py-1 rounded`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </CardContent>
               <CardFooter>
                 <Button variant="outline">View Project</Button>

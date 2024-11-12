@@ -20,7 +20,7 @@ const projects = [
   { id: 5, name: 'Data Centric Security', techs: ['Rust', 'UI(egui)', 'Windows','PKCS11'] },
 ]
 
-const colorMap = {
+const colorMap : Record<string, string> = {
   'React': 'bg-blue-500',
   'TypeScript': 'bg-blue-700',
   'Next.js': 'bg-black',

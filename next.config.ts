@@ -4,7 +4,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true, // This disables image optimization for GitHub Pages
   },
-  // Add other Next.js config options here as needed
+  basePath: "/github-portfoliov2",
+  output: "export",  // <=== enables static exports
+  reactStrictMode: true,
 };
 
 export default nextConfig;

@@ -22,7 +22,7 @@ export default function Home() {
           transition={{ duration: 0.5 }}
         >
           <Image
-            src="/github-portfiliov2//profile.jpg"
+            src="/github-portfoliov2/profile.jpg"
             alt="Profile"
             fill
             className="object-cover shadow-lg rounded-lg"
@@ -68,7 +68,7 @@ export default function Home() {
             transition={{ delay: 0.6, duration: 0.5 }}
           >
             <Image
-              src="/github-portfiliov2/logo_school.png"
+              src="/github-portfoliov2/logo_school.png"
               alt="School Logo"
               width={200}
               height={100}

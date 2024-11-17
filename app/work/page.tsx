@@ -9,7 +9,7 @@ import { X } from 'lucide-react'
 const projects = [
   { id: 1, title: 'BIFROST', description: 'A bridge between the cloud and the enterprise', url: 'https://github.com/THEKetsu/BIFROST' },
   { id: 2, title: 'RCTStrat', description: 'An interactive web & mobile strategy maker application for RCT', url: 'https://github.com/THEKetsu/projectRCT' },
-  { id: 3, title: 'MyPortofolio', description: 'My portfolio website', url: 'https://github.com/THEKetsu/github-portfoliov2' },
+  { id: 3, title: 'MyPortofolio', description: 'My portfolio website', url: 'https://github.com/THEKetsu/quentin-bender.io' },
 ]
 
 export default function Work() {

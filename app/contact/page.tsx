@@ -26,17 +26,17 @@ export default function Contact() {
       
       <div className="flex justify-center space-x-4 mt-8">
         <NextLink href="https://github.com/THEKetsu" passHref>
-          <Button variant="outline" size="icon" as="a" target="_blank" rel="noopener noreferrer">
+          <Button variant="outline" size="icon" rel="noopener noreferrer">
             <Github className="h-4 w-4" />
           </Button>
         </NextLink>
         <NextLink href="https://www.linkedin.com/in/quentin-bender-8252241b8/" passHref>
-          <Button variant="outline" size="icon" as="a" target="_blank" rel="noopener noreferrer">
+          <Button variant="outline" size="icon"  rel="noopener noreferrer">
             <Linkedin className="h-4 w-4" />
           </Button>
         </NextLink>
         <NextLink href="bender.quent@outlook.fr" passHref>
-          <Button variant="outline" size="icon" as="a">
+          <Button variant="outline" size="icon" rel="noopener noreferrer">
             <Mail className="h-4 w-4" />
           </Button>
         </NextLink>

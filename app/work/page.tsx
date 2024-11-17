@@ -1,22 +1,29 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { X } from 'lucide-react'
 
 const projects = [
-  { id: 1, title: 'Project 1', description: 'A brief description of Project 1' },
-  { id: 2, title: 'Project 2', description: 'A brief description of Project 2' },
-  { id: 3, title: 'Project 3', description: 'A brief description of Project 3' },
+  { id: 1, title: 'BIFROST', description: 'A bridge between the cloud and the enterprise', url: 'https://github.com/THEKetsu/BIFROST' },
+  { id: 2, title: 'RCTStrat', description: 'An interactive web & mobile strategy maker application for RCT', url: 'https://github.com/THEKetsu/projectRCT' },
+  { id: 3, title: 'MyPortofolio', description: 'My portfolio website', url: 'https://github.com/THEKetsu/github-portfoliov2' },
 ]
 
-
 export default function Work() {
+  const [isPopupVisible, setIsPopupVisible] = useState(false)
+
+  const showPopup = () => setIsPopupVisible(true)
+  const hidePopup = () => setIsPopupVisible(false)
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className="relative"
     >
       <h1 className="text-4xl font-bold mb-6">My Work</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -33,14 +40,45 @@ export default function Work() {
               </CardHeader>
               <CardContent>
                 <CardDescription>{project.description}</CardDescription>
+                <a href={project.url} className="text-secondary hover:underline">{project.url}</a>
               </CardContent>
               <CardFooter>
-                <Button>View Project</Button>
+                <Button onClick={showPopup}>View Project</Button>
               </CardFooter>
             </Card>
           </motion.div>
         ))}
       </div>
+
+      <AnimatePresence>
+        {isPopupVisible && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
+            onClick={hidePopup}
+          >
+            <div 
+              className="bg-background p-6 rounded-lg shadow-lg max-w-md w-full m-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold text-primary">Notice</h2>
+                <Button variant="ghost" size="icon" onClick={hidePopup}>
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Close</span>
+                </Button>
+              </div>
+              <p className="text-foreground mb-4">
+                We apologize, but viewing the project story is not possible right now. Please check back later for updates.
+              </p>
+              <Button onClick={hidePopup} className="w-full">Close</Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }

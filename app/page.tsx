@@ -35,7 +35,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            Welcome to My Portfolio
+            Quentin BENDER
           </motion.h1>
           <motion.p 
             className="text-xl mb-8"

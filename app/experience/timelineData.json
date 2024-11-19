@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "type": "education",
+      "title": "Engineering Degree in Cybersecurity",
+      "institution": "ISEN (Institut Supérieur de l'Électronique et du Numérique)",
+      "period": "2019 - 2022",
+      "description": "Specialized in cybersecurity, gaining expertise in advanced algorithms, software engineering, and digital security.",
+      "technologies": ["Cybersecurity", "Software Engineering", "Algorithms"],
+      "duration": 3,
+      "startDate": "2019-09-01",
+      "endDate": "2022-06-30"
+    },
+    {
+      "id": 2,
+      "type": "project",
+      "title": "BIFROST",
+      "projectName": "A bridge between the cloud and the enterprise",
+      "period": "2022",
+      "description": "Developed a project to connect cloud services with enterprise systems, enhancing data flow and security.",
+      "technologies": ["Cloud Computing", "Enterprise Systems", "Data Security"],
+      "duration": 0.5,
+      "startDate": "2022-07-01",
+      "endDate": "2022-12-31"
+    },
+    {
+      "id": 3,
+      "type": "work",
+      "title": "Cybersecurity Engineer",
+      "company": "Thales SIX Cyber Defense Solutions(CDS)",
+      "period": "2023",
+      "description": "Implemented digital signatures using cryptographic objects for Sidecar Files Binding Profile in a Data Centric Environment.",
+      "technologies": ["Rust", "Windows", "PKCS11", "UI(egui)", "Gitlab"],
+      "duration": 1,
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-31"
+    },
+    {
+      "id": 4,
+      "type": "work",
+      "title": "Software Engineer",
+      "company": "Thales Digital Identity & Security",
+      "period": "2023 - 2024",
+      "description": "Conducted benchmarking and technological watch for MQTT and TSDB solutions. Set up an infrastructure monitoring alternative using Datadog.",
+      "technologies": ["Python", "Gitlab", "React", "Ansible", "Datadog", "Docker", "MQTT", "TSDB"],
+      "duration": 1,
+      "startDate": "2023-01-01",
+      "endDate": "2024-12-31"
+    },
+    {
+      "id": 5,
+      "type": "work",
+      "title": "Product Owner & DevSecOps Lead",
+      "company": "Thales Digital Identity & Security",
+      "period": "2024 - Present",
+      "description": "Established an industrialization and support plan for a real-time monitoring project. Supported teams in integrating DevSecOps methodologies.",
+      "technologies": ["DevSecOps", "Ansible", "Gitlab", "Bash", "Flux", "Datadog"],
+      "duration": 1,
+      "startDate": "2024-01-01",
+      "endDate": "Present"
+    }
+  ]

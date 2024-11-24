@@ -79,7 +79,8 @@ export default function EnhancedTimeline() {
     }
   }, [])
 
-  const calculatePopupPosition = (buttonElement: HTMLElement, index: number) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const calculatePopupPosition = (buttonElement: HTMLElement, _itemId: number) => {
     if (!timelineRef.current) return 'center'
     
     const timelineRect = timelineRef.current.getBoundingClientRect()

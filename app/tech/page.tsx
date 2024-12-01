@@ -4,6 +4,8 @@ import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { useLanguage } from '@/contexts/language-context'
+import { translations } from '../i18n/translations'
 
 const technologies = [
   'React', 'TypeScript', 'Next.js', 'Python',
@@ -42,6 +44,8 @@ const colorMap : Record<string, string> = {
 
 export default function Tech() {
   const [selectedTech, setSelectedTech] = useState<string | null>(null)
+  const { language } = useLanguage()
+  const t = translations[language as keyof typeof translations].tech
 
   const filteredProjects = useMemo(() => 
     selectedTech
@@ -56,7 +60,7 @@ export default function Tech() {
       transition={{ duration: 0.5 }}
       className="space-y-8"
     >
-      <h1 className="text-4xl font-bold mb-6">My Tech Stack</h1>
+      <h1 className="text-4xl font-bold mb-6">{t.title}</h1>
       <div className="flex flex-wrap gap-4">
         {technologies.map((tech) => (
           <Button
@@ -71,7 +75,7 @@ export default function Tech() {
       </div>
 
       <h2 className="text-3xl font-bold mt-12 mb-6">
-        {selectedTech ? `Projects using ${selectedTech}` : 'All Projects'}
+        {selectedTech ? `${t.projectsUsing} ${selectedTech}` : t.allProjects}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProjects.map((project) => (
@@ -87,7 +91,7 @@ export default function Tech() {
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Technologies used:
+                  {t.technologies}
                 </CardDescription>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {project.techs.map((tech) => (
@@ -101,14 +105,14 @@ export default function Tech() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button variant="outline">View Project</Button>
+                <Button variant="outline">{t.viewProject}</Button>
               </CardFooter>
             </Card>
           </motion.div>
         ))}
       </div>
       {filteredProjects.length === 0 && (
-        <p className="text-center text-gray-500">No projects found for the selected technology.</p>
+        <p className="text-center text-gray-500">{t.noProjects}</p>
       )}
     </motion.div>
   )

@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { X } from 'lucide-react'
+import { useLanguage } from '@/contexts/language-context'
+import { translations } from '../i18n/translations'
 
 const projects = [
   { id: 1, title: 'BIFROST', description: 'A bridge between the cloud and the enterprise', url: 'https://github.com/THEKetsu/BIFROST' },
@@ -14,6 +16,8 @@ const projects = [
 
 export default function Work() {
   const [isPopupVisible, setIsPopupVisible] = useState(false)
+  const { language } = useLanguage()
+  const t = translations[language as keyof typeof translations].work
 
   const showPopup = () => setIsPopupVisible(true)
   const hidePopup = () => setIsPopupVisible(false)
@@ -25,7 +29,7 @@ export default function Work() {
       transition={{ duration: 0.5 }}
       className="relative"
     >
-      <h1 className="text-4xl font-bold mb-6">My Work</h1>
+      <h1 className="text-4xl font-bold mb-6">{t.title}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
           <motion.div
@@ -43,7 +47,7 @@ export default function Work() {
                 <a href={project.url} className="text-secondary hover:underline">{project.url}</a>
               </CardContent>
               <CardFooter>
-                <Button onClick={showPopup}>View Project</Button>
+                <Button onClick={showPopup}>{t.viewProject}</Button>
               </CardFooter>
             </Card>
           </motion.div>
@@ -65,16 +69,16 @@ export default function Work() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-primary">Notice</h2>
+                <h2 className="text-2xl font-bold text-primary">{t.notice}</h2>
                 <Button variant="ghost" size="icon" onClick={hidePopup}>
                   <X className="h-4 w-4" />
-                  <span className="sr-only">Close</span>
+                  <span className="sr-only">{t.close}</span>
                 </Button>
               </div>
               <p className="text-foreground mb-4">
-                We apologize, but viewing the project story is not possible right now. Please check back later for updates.
+                {t.noticeMessage}
               </p>
-              <Button onClick={hidePopup} className="w-full">Close</Button>
+              <Button onClick={hidePopup} className="w-full">{t.close}</Button>
             </div>
           </motion.div>
         )}
@@ -82,3 +86,4 @@ export default function Work() {
     </motion.div>
   )
 }
+

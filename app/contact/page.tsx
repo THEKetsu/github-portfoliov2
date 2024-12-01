@@ -6,21 +6,26 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Github, Linkedin, Mail } from 'lucide-react';
 import NextLink from 'next/link';
+import { useLanguage } from '@/contexts/language-context'
+import { translations } from '../i18n/translations'
 
 export default function Contact() {
+  const { language } = useLanguage()
+  const t = translations[language as keyof typeof translations].contact
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h1 className="text-4xl font-bold mb-6">Contact Me</h1>
+      <h1 className="text-4xl font-bold mb-6">{t.title}</h1>
       
       <form action="https://formspree.io/f/xwpkqedo" method="POST" className="space-y-4 max-w-md mx-auto">
-        <Input placeholder="Your Name" name="name" />
-        <Input type="email" placeholder="Your Email" name="email" />
-        <Textarea placeholder="Your Message" name="message" />
-        <Button type="submit" className="w-full">Send Message</Button>
+        <Input placeholder={t.name} name="name" />
+        <Input type="email" placeholder={t.email} name="email" />
+        <Textarea placeholder={t.message} name="message" />
+        <Button type="submit" className="w-full">{t.send}</Button>
       </form>
 
       

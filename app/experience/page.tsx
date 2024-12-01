@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { Building2, Calendar, GraduationCap, Briefcase, FolderGit2, Zap } from 'lucide-react'
 import timelineData from './timelineData.json'
-
+import { useLanguage } from '@/contexts/language-context'
+import { translations } from '../i18n/translations'
 const hideScrollbarClass = "scrollbar-hide"
 
 const globalStyles = `
@@ -49,7 +50,8 @@ const monthNames = [
   "July", "August", "September", "October", "November", "December"
 ];
 
-const Legend = () => (
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Legend = ({ t }: { t: any }) => (
   <div className="flex flex-wrap justify-center gap-6 mb-8 pt-6">
     {['education', 'project', 'work'].map((type) => {
       const Icon = getIcon(type)
@@ -57,7 +59,7 @@ const Legend = () => (
       return (
         <div key={type} className="flex items-center bg-card/50 backdrop-blur-sm px-4 py-2 rounded-lg">
           <Icon className={`w-8 h-8 mr-3 ${colorClass}`} />
-          <span className="capitalize text-lg font-medium">{type}</span>
+          <span className="capitalize text-lg font-medium">{t[type]}</span>
         </div>
       )
     })}
@@ -65,10 +67,13 @@ const Legend = () => (
 )
 
 export default function EnhancedTimeline() {
+
   useTheme()
   const [selectedItem, setSelectedItem] = useState<number | null>(null)
-  const timelineRef = useRef<HTMLDivElement>(null)
+  const timelineRef = useRef<HTMLDivElement | null>(null)
   const [popupPositions, setPopupPositions] = useState<{ [key: number]: string }>({})
+  const { language } = useLanguage()
+  const t = translations[language as keyof typeof translations].experience
 
   useEffect(() => {
     const styleElement = document.createElement('style')
@@ -109,7 +114,7 @@ export default function EnhancedTimeline() {
 
   return (
     <div className="min-h-screen flex flex-col w-full">
-      <Legend />
+      <Legend t={t} />
       <div className="flex-grow flex items-center overflow-x-auto scrollbar-hide px-4">
         <div className="relative w-full py-20" ref={timelineRef}>
           <div className="absolute left-0 right-0 h-1 bg-primary/30 top-1/2 transform -translate-y-1/2" />
@@ -203,3 +208,5 @@ export default function EnhancedTimeline() {
     </div>
   )
 }
+
+

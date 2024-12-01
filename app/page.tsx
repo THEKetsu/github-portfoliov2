@@ -6,8 +6,13 @@ import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Github, Linkedin, Code, Shield, Globe } from 'lucide-react'
+import { translations } from '../app/i18n/translations'
+import { useLanguage } from '@/contexts/language-context'
 
 export default function Home() {
+  const { language } = useLanguage()
+  const t = translations[language as keyof typeof translations]
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 mt-8">
       <motion.div
@@ -38,7 +43,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              Quentin BENDER
+              {t.name}
             </motion.h1>
             <motion.p 
               className="text-xl mb-8"
@@ -46,7 +51,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              Ingénieur DevSecOps débutant, passionné par la cybersécurité et le développement web.
+              {t.role}
             </motion.p>
             <motion.div 
               className="text-lg space-y-4"
@@ -54,9 +59,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              <p>
-                Récemment diplômé en cybersécurité, je suis prêt à mettre mes compétences au service de vos projets innovants.
-              </p>
+              <p>{t.intro}</p>
             </motion.div>
           </div>
         </div>
@@ -68,7 +71,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold mb-8 text-center">Mes Services</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">{t.services}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card>
               <CardHeader>
@@ -78,7 +81,7 @@ export default function Home() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p>Sécurité intégrée au développement</p>
+                <p>{t.devSecOps}</p>
               </CardContent>
             </Card>
             <Card>
@@ -89,7 +92,7 @@ export default function Home() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p>Développement web complet</p>
+                <p>{t.fullStack}</p>
               </CardContent>
             </Card>
             <Card>
@@ -100,12 +103,11 @@ export default function Home() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p>Sites responsifs et performants</p>
+                <p>{t.webInProgress}</p>
               </CardContent>
             </Card>
           </div>
         </motion.div>
-
       </motion.div>
       
       {/* Footer section */}
@@ -137,10 +139,9 @@ export default function Home() {
           </div>
         </div>
         <p className="text-center text-sm text-gray-400">
-          © 2023 Quentin Bender. Tous droits réservés.
+          {t.footer}
         </p>
       </motion.div>
     </div>
   )
 }
-

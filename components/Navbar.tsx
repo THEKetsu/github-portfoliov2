@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Moon, Sun, Menu } from 'lucide-react'
+import { Moon, Sun, Menu, Globe } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import { useLanguage } from '@/contexts/language-context'
+import { translations } from '../app/i18n/translations'
 
 const navItems = [
   { name: 'Home', href: '/' },
@@ -21,6 +23,8 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const { language, setLanguage } = useLanguage()
+  const t = translations[language as keyof typeof translations]
 
   useEffect(() => {
     setMounted(true)
@@ -31,7 +35,7 @@ export function Navbar() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14">
           <Link href="/" className="text-lg font-semibold text-gray-900 dark:text-white">
-          Quentin BENDER 
+            Quentin BENDER 
           </Link>
           <div className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => (
@@ -40,7 +44,7 @@ export function Navbar() {
                 href={item.href}
                 className="relative px-2 py-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
               >
-                {item.name}
+                {t.nav[item.name.toLowerCase() as keyof typeof t.nav]}
                 {pathname === item.href && (
                   <motion.div
                     className="absolute inset-x-0 bottom-0 h-0.5 bg-blue-600 dark:bg-blue-400"
@@ -51,14 +55,20 @@ export function Navbar() {
               </Link>
             ))}
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
+              className="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            >
+              <Globe size={18} />
+            </button>
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               className="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             >
               {mounted && (theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />)}
             </button>
-            <div className="md:hidden ml-2">
+            <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="inline-flex items-center justify-center p-1 rounded-md text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none"
@@ -79,7 +89,7 @@ export function Navbar() {
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 hover:bg-gray-50 dark:hover:text-white dark:hover:bg-gray-700"
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                {t.nav[item.name.toLowerCase() as keyof typeof t.nav]}
               </Link>
             ))}
           </div>
